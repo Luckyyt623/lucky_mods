@@ -58,7 +58,7 @@ def mods(game):
         return render_template("mods.html",
                              game="Slither.io",
                              mods=slither_mods,
-                             game_logo="slitherio.jpg")
+                             game_logo="Slitherio.jpg")
     elif game.lower() == "minecraft":
         return render_template("mods.html",
                              game="Minecraft",

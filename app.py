@@ -78,7 +78,7 @@ def mod_details(game, mod_id):
     if game.lower() == "slitherio":
         mods_list = slither_mods
         game_name = "Slither.io"
-        game_logo = "slitherio.jpg"
+        game_logo = "Slitherio.jpg"
     elif game.lower() == "minecraft":
         mods_list = minecraft_mods
         game_name = "Minecraft"

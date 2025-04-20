@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ mod.name }} Details</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body {
+            background-image: url('{{ url_for("static", filename="images/background.jpg") }}');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #fff; min-height: 100vh;
+        }
+        .container {
+            max-width: 800px; margin: 50px auto; padding: 30px; background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px; text-align: center; animation: fadeIn 1s ease-in; position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 { margin-bottom: 20px; font-size: 2em; }
+        .game-logo {
+            width: 100%; max-width: 150px; height: auto; margin-bottom: 20px; border-radius: 5px;
+        }
+        .mod-image {
+            width: 100%; max-width: 400px; height: 300px; object-fit: cover; border-radius: 10px;
+            margin-bottom: 20px; border: 3px solid #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            animation: fadeIn 1.5s ease-in;
+        }
+        p { margin-bottom: 20px; line-height: 1.6; font-size: 1.1em; }
+        .download-btn {
+            display: inline-block; padding: 15px 30px; background: #007bff; color: white;
+            text-decoration: none; border-radius: 8px; font-size: 1.2em; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
+        .download-btn:hover {
+            background: #0056b3; animation: bounce 0.3s;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .menu {
+            position: absolute; top: 20px; right: 20px; cursor: pointer;
+        }
+        .menu-dots {
+            font-size: 24px; color: #ffd700;
+        }
+        .menu-content {
+            display: none; position: absolute; top: 30px; right: 0; background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px; min-width: 120px; z-index: 1; animation: slideDown 0.3s ease;
+        }
+        .menu.active .menu-content {
+            display: block;
+        }
+        .menu-content a {
+            color: #ffd700; text-decoration: none; padding: 10px; display: block;
+        }
+        .menu-content a:hover {
+            background: #ffd700; color: black;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back {
+            display: inline-block; margin-top: 20px; color: #ffd700; text-decoration: none;
+            padding: 10px 20px; border: 2px solid #ffd700; border-radius: 8px; transition: background 0.3s;
+        }
+        .back:hover {
+            background: #ffd700; color: black; animation: bounce 0.3s;
+        }
+        .info { margin: 10px 0; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu" onclick="this.classList.toggle('active')">
+            <div class="menu-dots">☰</div>
+            <div class="menu-content">
+                <a href="{{ url_for('welcome') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+        </div>
+        <img src="{{ url_for('static', filename='images/' + game_logo) }}" alt="{{ game }} Logo" class="game-logo">
+        <h1>{{ mod.name }}</h1>
+        {% if mod.image %}
+            <img src="{{ url_for('static', filename=mod.image) }}" alt="{{ mod.name }}" class="mod-image" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/default_mod.jpg') }}';">
+        {% else %}
+            <p>No image available.</p>
+        {% endif %}
+        {% if mod.details %}
+            <p>{{ mod.details }}</p>
+        {% else %}
+            <p>No details available.</p>
+        {% endif %}
+        {% if mod.version %}
+            <p class="info">Version: {{ mod.version }}</p>
+        {% endif %}
+        {% if mod.author %}
+            <p class="info">Author: {{ mod.author }}</p>
+        {% endif %}
+        <a href="{{ mod.download_link }}" class="download-btn" target="_blank">Download Now</a>
+        <a href="{{ url_for('mods', game=game.lower()) }}" class="back">Back to Mods</a>
+    </div>
+</body>
+</html>

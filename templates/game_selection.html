@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Selection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body {
+            background-image: url('{{ url_for("static", filename="images/background.jpg") }}');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #fff; min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px; margin: 50px auto; padding: 20px; background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px; text-align: center; animation: fadeIn 1s ease-in; position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 { margin-bottom: 20px; }
+        .game-boxes {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+        }
+        .game-box {
+            text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1); padding: 15px;
+            border-radius: 10px; width: 250px; transition: transform 0.3s; animation: fadeIn 1.5s ease-in;
+        }
+        .game-box:hover {
+            transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        .game-box img {
+            width: 100%; max-width: 400px; height: 400px; object-fit: contain; border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .menu {
+            position: absolute; top: 20px; right: 20px; cursor: pointer;
+        }
+        .menu-dots {
+            font-size: 24px; color: #ffd700;
+        }
+        .menu-content {
+            display: none; position: absolute; top: 30px; right: 0; background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px; min-width: 120px; z-index: 1; animation: slideDown 0.3s ease;
+        }
+        .menu.active .menu-content {
+            display: block;
+        }
+        .menu-content a {
+            color: #ffd700; text-decoration: none; padding: 10px; display: block;
+        }
+        .menu-content a:hover {
+            background: #ffd700; color: black;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu" onclick="this.classList.toggle('active')">
+            <div class="menu-dots">☰</div>
+            <div class="menu-content">
+                <a href="{{ url_for('welcome') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+        </div>
+        <h1>Choose a Game</h1>
+        <div class="game-boxes">
+            <a href="{{ url_for('mods', game='slitherio') }}" class="game-box">
+                <img src="{{ url_for('static', filename='images/slitherio.jpg') }}" alt="Slither.io">
+                <h2>Slither.io</h2>
+            </a>
+            <a href="{{ url_for('mods', game='minecraft') }}" class="game-box">
+                <img src="{{ url_for('static', filename='images/minecraft.jpg') }}" alt="Minecraft">
+                <h2>Minecraft</h2>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

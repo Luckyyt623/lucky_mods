@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body {
+            background-image: url('{{ url_for("static", filename="images/background.jpg") }}');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #fff; min-height: 100vh;
+        }
+        .container {
+            max-width: 400px; margin: 50px auto; padding: 20px; background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px; text-align: center; animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 { margin-bottom: 20px; }
+        .error { color: #ff5555; margin-bottom: 10px; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        label { font-size: 1.1em; }
+        input { padding: 10px; border: none; border-radius: 5px; font-size: 1em; }
+        button {
+            padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px;
+            cursor: pointer; transition: background 0.3s;
+        }
+        button:hover {
+            background: #218838; animation: bounce 0.3s;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .link {
+            margin-top: 15px; color: #ffd700; text-decoration: none; font-size: 1em;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('register') }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+        <a href="{{ url_for('login') }}" class="link">Already have an account? Login</a>
+    </div>
+</body>
+</html>

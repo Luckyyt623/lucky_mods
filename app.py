@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 import os
+from pymongo import MongoClient
+from datetime import datetime
 
 app = Flask(__name__)
 
-# Configuration
+# Configuration for static files
 app.config['STATIC_FOLDER'] = 'static'
 app.config['IMAGE_FOLDER'] = os.path.join(app.config['STATIC_FOLDER'], 'images')
 app.config['MOD_IMAGE_FOLDER'] = os.path.join(app.config['IMAGE_FOLDER'], 'mods')
@@ -11,7 +13,7 @@ app.config['MOD_IMAGE_FOLDER'] = os.path.join(app.config['IMAGE_FOLDER'], 'mods'
 # Ensure directories exist
 os.makedirs(app.config['MOD_IMAGE_FOLDER'], exist_ok=True)
 
-# Static mod storage
+# Static mod storage (same as before)
 slither_mods = [
     {"id": 1, "name": "Slither Mod 1", "link": "https://www.mediafire.com/file/your_actual_link1", "image": "images/mods/mod1.jpg", "details": "Zoom function , Bot mod , control rotation , Glow effect,big name .", "download_link": "https://www.mediafire.com/file/rvf76lx37mq447u/(@slitherandroidmod)v2-77.apk/file/your_actual_link1", "version": "2.77", "author": "Modder 1"},
     {"id": 2, "name": "Slither Mod 2", "link": "https://www.mediafire.com/file/your_actual_link2", "image": "images/mods/mod2.jpg", "details": "You can easily change Server, High, midium,low graphics available, Respawn button.", "download_link": "https://www.mediafire.com/file/7s9h5fo0xlp4u8g/EXPERIMENTAL_VERSION.apk/file/your_actual_link2", "version": "2.6", "author": "Modder 2"},
@@ -42,6 +44,12 @@ minecraft_mods = [
     }
     for i in range(1, 4)
 ]
+
+# MongoDB Configuration
+# Replace with your MongoDB Atlas connection string
+client = MongoClient("mongodb+srv://myuser:<db_password>@cluster0.ofrf2ap.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+db = client['myFirstDatabase']  # Database name
+chat_collection = db['chat_messages']  # Collection name
 
 @app.route("/")
 def welcome():
@@ -97,6 +105,28 @@ def mod_details(game, mod_id):
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    message_text = request.form.get('message')
+    mod_id = request.form.get('mod_id')
+    username = request.form.get('username', 'Anonymous')
+
+    if message_text:
+        chat_collection.insert_one({
+            "mod_id": int(mod_id),
+            "username": username,
+            "message": message_text,
+            "timestamp": datetime.utcnow()
+        })
+        return {'status': 'success'}, 200
+    return {'status': 'error'}, 400
+
+@app.route('/get_messages')
+def get_messages():
+    mod_id = request.args.get('mod_id')
+    messages = chat_collection.find({"mod_id": int(mod_id)}).sort("timestamp", -1)
+    return [{"username": msg["username"], "message": msg["message"], "timestamp": str(msg["timestamp"])} for msg in messages]
 
 # Error handlers
 @app.errorhandler(404)

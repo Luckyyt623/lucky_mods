@@ -44,6 +44,24 @@
         .chat-container.active {
             display: flex;
         }
+        .username-prompt {
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9); padding: 20px; border-radius: 10px; text-align: center;
+        }
+        .username-prompt.active {
+            display: block;
+        }
+        .username-prompt input {
+            padding: 10px; width: 200px; margin-bottom: 10px; border: none; border-radius: 5px;
+            background: #222; color: #fff; outline: none;
+        }
+        .username-prompt button {
+            padding: 10px 20px; background: #007bff; color: white; border: none;
+            border-radius: 5px; cursor: pointer; transition: background 0.3s;
+        }
+        .username-prompt button:hover {
+            background: #0056b3;
+        }
         .chat-messages {
             margin-bottom: 10px;
         }
@@ -139,7 +157,7 @@
         <div class="header-section">
             <img src="{{ url_for('static', filename='images/' + game_logo) }}" alt="{{ game }} Logo" class="game-logo">
             {% if game.lower() == 'slither.io' %}
-                <button class="chat-toggle" onclick="toggleChat()">Toggle Chat</button>
+                <button class="chat-toggle" onclick="showUsernamePrompt()">Toggle Chat</button>
             {% endif %}
         </div>
         {% if game.lower() == 'slither.io' %}
@@ -149,6 +167,11 @@
                     <input type="text" id="chatInput" placeholder="Type a message...">
                     <button onclick="sendMessage()">Send</button>
                 </div>
+            </div>
+            <div class="username-prompt" id="usernamePrompt">
+                <h3>Enter Your Name</h3>
+                <input type="text" id="usernameInput" placeholder="Your Name">
+                <button onclick="setUsername()">Submit</button>
             </div>
         {% endif %}
         {% if mods %}
@@ -167,27 +190,39 @@
     </div>
 
     <script>
-        // Chat Functionality for Slither.io
+        // Chat Variables
+        let username = null;
         const chatContainer = document.getElementById('chatContainer');
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
-        const modId = 0; // General chat for Slither.io mods page (no specific mod)
+        const usernamePrompt = document.getElementById('usernamePrompt');
+        const usernameInput = document.getElementById('usernameInput');
+        const modId = 0; // General chat for Slither.io mods page
 
-        function toggleChat() {
-            chatContainer.classList.toggle('active');
-            if (chatContainer.classList.contains('active')) {
+        function showUsernamePrompt() {
+            usernamePrompt.classList.add('active');
+        }
+
+        function setUsername() {
+            username = usernameInput.value.trim();
+            if (username) {
+                usernamePrompt.classList.remove('active');
+                chatContainer.classList.add('active');
                 loadMessages();
+            } else {
+                alert('Please enter a name!');
             }
         }
 
         function loadMessages() {
+            if (!username) return;
             fetch(`/get_messages?mod_id=${modId}`)
                 .then(response => response.json())
                 .then(data => {
                     chatMessages.innerHTML = '';
                     data.forEach(msg => {
                         const message = document.createElement('div');
-                        message.className = `message ${msg.username === 'Anonymous' ? 'received' : 'sent'}`;
+                        message.className = `message ${msg.username === username ? 'sent' : 'received'}`;
                         message.textContent = `${msg.username}: ${msg.message} (${new Date(msg.timestamp).toLocaleString()})`;
                         chatMessages.appendChild(message);
                     });
@@ -196,13 +231,12 @@
         }
 
         function sendMessage() {
-            const messageText = chatInput.value.trim();
-            if (messageText === '') return;
+            if (!username || !chatInput.value.trim()) return;
 
             fetch('/send_message', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `message=${encodeURIComponent(messageText)}&mod_id=${modId}&username=Anonymous`
+                body: `message=${encodeURIComponent(chatInput.value.trim())}&mod_id=${modId}&username=${encodeURIComponent(username)}`
             })
             .then(response => response.json())
             .then(data => {
@@ -211,8 +245,6 @@
                     loadMessages(); // Refresh messages
                 }
             });
-
-            chatInput.value = '';
         }
 
         // Send message on Enter key

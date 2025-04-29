@@ -47,7 +47,7 @@ minecraft_mods = [
 
 # MongoDB Configuration
 # Replace with your MongoDB Atlas connection string
-client = MongoClient("mongodb+srv://myuser:<db_password>@cluster0.ofrf2ap.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient("mongodb+srv://myuser:<iflcJxgFAR57IHhO>@cluster0.ofrf2ap.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 db = client['myFirstDatabase']  # Database name
 chat_collection = db['chat_messages']  # Collection name
 

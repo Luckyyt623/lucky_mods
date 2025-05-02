@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className=' h-screen flex justify-center   w-full'>
             <div className='scroller h-full  w-[1800px] overflow-y-auto flex flex-col'>
 
-                <header className='bg-black h-[80px] w-full'>
+                <header className='bg-black p-[20px] w-full'>
 
                     <Navbar />
                 </header>
@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </main>
 
         
-                <footer>
+                <footer className='h-[80px] w-full  bottom-0 relative'>
 
                     <Footer />
                 </footer>

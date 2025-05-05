@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Navbar from './components/site/Navbar';
-import Footer from './components/site/Footer';
+
 
 export default function Layout({ children }: { children: ReactNode }) {
     return (
@@ -17,10 +17,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </main>
 
         
-                <footer className='h-[80px] w-full  bottom-0 relative'>
-
-                    <Footer />
-                </footer>
+               
                 
             </div>
         </div>

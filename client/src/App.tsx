@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import Loading from './components/site/Loading'
+import Mods from './pages/Mods'
 
 export default function App() {
 
@@ -11,8 +12,7 @@ export default function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<div>About</div>} />
-          <Route path="/contact" element={<div>Contact</div>} />
+          <Route path='/mods' element={<Mods/>}/>
         </Routes>
       </Suspense>
     </Router>

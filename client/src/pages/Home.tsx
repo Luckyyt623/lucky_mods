@@ -1,8 +1,7 @@
 import Layout from "@/Layout"
 import Carousel from "@/components/site/Carousel"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {Button} from '@/components/ui/button'
-import { Download, Youtube, MessageCircle, Star, Clock } from "lucide-react"
+
 
 import {
   Card,

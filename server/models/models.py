@@ -14,3 +14,11 @@ class Mods(Base):
     modedesc = Column(String(255))
     modegametype = Column(String(255))
     created_at = Column(DateTime(timezone=True), default=func.now())
+
+class Admin(Base):
+    __tablename__ = "admin"
+
+    id = Column(Integer, primary_key=True)
+    username = Column(String(255))
+    password = Column(String(255))
+    

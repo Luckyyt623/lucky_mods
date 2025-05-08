@@ -1,6 +1,7 @@
 import Minecraftbg from '@/assets/minecraftbg.jpg'
 import Slitherbg from '@/assets/slitherbg.jpg'
 import { Button } from '../ui/button'
+import { Link } from 'react-router-dom'
 
 export default function Carousel() {
     return (
@@ -18,11 +19,11 @@ export default function Carousel() {
 
                 <p className='text-2lg bg-linear-to-r from-sky-500 bg-clip-text to-indigo-500 text-transparent font-bold chau tracking-widest  shadow-lg shadow-red-900/10 uppercase '>Explore exciting mods for Slither.io and stay tuned for Minecraft updates!</p>
                 <Button className='bg-linear-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 cursor-pointer' size={'xl'}>
-                    <p className='text-md'>Explore</p>
+                    <Link  to="/mods" className='text-md w-full h-full flex items-center justify-center'>Explore</Link>
                 </Button>
             </div>
 
-
+                
      
 
         </div>

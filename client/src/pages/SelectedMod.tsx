@@ -20,10 +20,10 @@ export default function SelectedMod({ vals }: { vals: Vals }) {
   return (
 
 
-    <div className="w-full   items-center mt-[20px] justify-center flex flex-col gap-[20px] sm:p-[0px] p-[20px]">
+    <div className="w-[100%] items-center md:w-full    mt-[20px] justify-center flex flex-col gap-[20px] sm:p-[0px] ">
 
 
-      <p className="w-[400px] ibm-mono sm:p-[0px] p-[20px]">{vals.modname}</p>
+      <p className="w-[400px] ibm-mono  ">{vals.modname}</p>
       <img src={vals.modimage} className="w-[400px] h-[250px] object-cover rounded-lg" alt="" />
       <div className="ibm-mono text-sm flex items-center justify-between p-[20px] sm:p-[0px] w-[400px]">
 

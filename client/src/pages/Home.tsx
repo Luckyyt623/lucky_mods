@@ -40,7 +40,7 @@ export default function Home() {
     if (PopularMinecraftMods.length === 0 && PopularSlitherMods.length === 0) {
       setisLoading(true)
 
-      fetch("http://127.0.0.1:5000/api/get_popular_mods").then((response) => response.json()).then((data) => {
+      fetch(`${import.meta.env.VITE_APP_SERVER_URL}/api/get_popular_mods`).then((response) => response.json()).then((data) => {
         setPopularMinecraftMods(data?.data?.minecraft)
         setPopularSlitherMods(data?.data?.slither)
         setisLoading(false)
@@ -55,7 +55,7 @@ export default function Home() {
     if (NewSlitherMods.length === 0 && NewMinecraftMods.length === 0) {
       setisLoading(true)
 
-      fetch("http://127.0.0.1:5000/api/get_new_mods").then((response) => response.json()).then((data) => {
+      fetch(`${import.meta.env.VITE_APP_SERVER_URL}/api/get_new_mods`).then((response) => response.json()).then((data) => {
         setNewMinecraftMods(data.data?.minecraft)
         setNewSlitherMods(data.data?.slither)
         setisLoading(false)
@@ -96,9 +96,9 @@ export default function Home() {
             }
             if (selectedData) {
 
-              return <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center p-[20px]"><div>
+              return <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center "><div>
 
-                <div className="w-full relative h-full ">
+                <div className="w-full relative h-full">
                   <button className="absolute right-0 rounded-full w-[30px] h-[30px] border border-white flex items-center justify-center" onClick={() => CloseSelectedMod()}><X /></button>
                   <SelectedMod vals={selectedData} />
                 </div>
@@ -111,7 +111,7 @@ export default function Home() {
 
           })()
 
-        ) : (<div className="flex w-full h-[100%] flex-col gap-[30px]">
+        ) : (<div className="flex w-full h-[100%]  flex-col gap-[30px]">
 
           <Carousel />
 
@@ -124,9 +124,9 @@ export default function Home() {
                   <TabsTrigger className="w-[200px]" value="New">New</TabsTrigger>
                   <TabsTrigger className="w-[200px]" value="Popular">Popular</TabsTrigger>
                 </TabsList>
-                <TabsContent value="New" className="flex gap-[20px] items-center w-full justify-center ">
+                <TabsContent value="New" className="flex gap-[20px] md:flex-row flex-col items-center w-full justify-center ">
                   {NewSlitherMods?.map((value, index) => (
-                    <button onClick={() => setSelectedModid({ type: "new", game: "slither", id: value.id })} key={index} className="bg-gradient-to-r hover:from-yellow-500 hover:to-pink-500 rounded-xl p-1 from-green-500 to-cyan-500 w-full lg:w-[350px] ">
+                    <button onClick={() => setSelectedModid({ type: "new", game: "slither", id: value.id })} key={index} className="bg-gradient-to-r hover:from-yellow-500 hover:to-pink-500 rounded-xl p-1 from-green-500 to-cyan-500 w-full md:w-[350px] ">
 
                       <Cards value={value} />
                     </button>
@@ -134,7 +134,7 @@ export default function Home() {
 
 
                 </TabsContent>
-                <TabsContent value="Popular" className="flex gap-[20px] items-center">
+                <TabsContent value="Popular" className="flex gap-[20px] w-full lg:flex-row flex-col items-center">
                   {PopularSlitherMods.map((value, index) => (
                     <button onClick={() => setSelectedModid({ type: "popular", game: "slither", id: value.id })} key={index} className="bg-gradient-to-r hover:from-yellow-500 hover:to-pink-500 rounded-xl p-1 from-green-500 to-cyan-500 w-full lg:w-[350px] ">
 
@@ -159,7 +159,7 @@ export default function Home() {
                   <TabsTrigger className="w-[200px]" value="New">New</TabsTrigger>
                   <TabsTrigger className="w-[200px]" value="Popular">Popular</TabsTrigger>
                 </TabsList>
-                <TabsContent value="New" className="flex gap-[20px] items-center">
+                <TabsContent value="New" className="flex w-full flex-col lg:flex-row gap-[20px] items-center">
                   {NewMinecraftMods.map((value, index) => (
                     <button onClick={() => setSelectedModid({ type: "new", game: "minecraft", id: value.id })} key={index} className="bg-gradient-to-r hover:from-yellow-500 hover:to-pink-500 rounded-xl p-1 from-green-500 to-cyan-500 w-full lg:w-[350px] ">
 
@@ -169,7 +169,7 @@ export default function Home() {
 
 
                 </TabsContent>
-                <TabsContent value="Popular" className="flex gap-[20px] items-center">
+                <TabsContent value="Popular" className="flex w-full flex-col lg:flex-row gap-[20px] items-center">
                   {PopularMinecraftMods.map((value, index) => (
                     <button onClick={() => setSelectedModid({ type: "popular", game: "slither", id: value.id })} key={index} className="bg-gradient-to-r hover:from-yellow-500 hover:to-pink-500 rounded-xl p-1 from-green-500 to-cyan-500 w-full lg:w-[350px] ">
 
@@ -211,7 +211,7 @@ export default function Home() {
                     <p className="text-gray-300 ibm-mono">Join our Discord for installation help and mod discussions</p>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-row gap-4 justify-center w-full  items-center">
                   <a href="https://discord.gg/JpSWMuU9" className="bg-linear-to-r from-sky-500 hover:from-sky-600 hover:to-indigo-600 to-indigo-500 w-[150px] py-[7px] rounded-lg" >Join discord</a>
                   <a href="https://www.youtube.com/@Lucky_62388" className="bg-linear-to-r from-red-500 to-red-700  py-[7px] w-[150px] rounded-lg">Youtube channel</a>
                 </div>

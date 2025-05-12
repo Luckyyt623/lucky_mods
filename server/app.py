@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 load_dotenv()
-CORS(app, origins=["http://192.168.1.3:5173"] )
+CORS(app, origins=["*"] )
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True
 }
@@ -41,4 +41,4 @@ def get_newmods():
 def shutdown_session(exception=None):
     dbInstance.DbSession().remove()  # removes the current session for this request
 
-app.run(port=os.getenv("PORT"), debug=True)
+app.run(port=os.getenv("PORT"), debug=True , host="0.0.0.0")

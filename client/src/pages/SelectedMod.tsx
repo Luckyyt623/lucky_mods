@@ -1,5 +1,5 @@
 import TotalUsers from "@/components/site/TotalUsers"
-import { X } from 'lucide-react';
+
 
 interface Vals {
   id: number,
@@ -13,19 +13,16 @@ interface Vals {
   created_at: string,
 }
 
-export default function SelectedMod({  vals , HandleClose = () => {} }: {  vals: Vals , HandleClose: () => void }) {
+export default function SelectedMod({ vals }: { vals: Vals }) {
 
-  const FunctionHandler = () => {
-    console.log("working!" )
-    HandleClose()
-  }
+
 
   return (
 
 
-    <div   className="w-full relative  items-center mt-[20px] justify-center flex flex-col gap-[20px] sm:p-[0px] p-[20px]">
-      
-      <button onClick={() => FunctionHandler()} className="absolute right-[-20px] top-[-20px] w-[40px] h-[40px] flex items-center justify-center rounded-full border border-white"><X/></button>
+    <div className="w-full   items-center mt-[20px] justify-center flex flex-col gap-[20px] sm:p-[0px] p-[20px]">
+
+
       <p className="w-[400px] ibm-mono sm:p-[0px] p-[20px]">{vals.modname}</p>
       <img src={vals.modimage} className="w-[400px] h-[250px] object-cover rounded-lg" alt="" />
       <div className="ibm-mono text-sm flex items-center justify-between p-[20px] sm:p-[0px] w-[400px]">
@@ -33,7 +30,7 @@ export default function SelectedMod({  vals , HandleClose = () => {} }: {  vals:
         <p className=" flex items-center gap-[10px]"><span className="text-yellow-500 ">Created on</span> {vals.created_at}</p>
         <div className="w-max">
 
-          <TotalUsers users={vals.rating}/>
+          <TotalUsers users={vals.rating} />
         </div>
       </div>
 

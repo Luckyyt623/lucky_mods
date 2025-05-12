@@ -1,0 +1,4 @@
+main/
+.env
+models/__pycache__/
+database/__pycache__/

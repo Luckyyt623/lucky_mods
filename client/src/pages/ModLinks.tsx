@@ -65,7 +65,7 @@ export default function ModLinks({ typegame }: { typegame: string }) {
             {isLoading ? <div className="w-full h-full flex items-center justify-center">
                 <Loading />
             </div> :
-                <div className="flex flex-col gap-[20px] w-full h-full items-center  ">
+                <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center ">
                     {SelectedModid ? <div>
                         {Game_mods.filter((e) => e.id === SelectedModid).map((vals, key) => {
                             return <div key={key} className="w-full relative h-full ">

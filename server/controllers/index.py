@@ -17,6 +17,7 @@ def get_all_mods(requets):
                     "modname": mod.modname,
                     "modurl": mod.modurl,
                     "modimage": mod.modimage,
+                    "modgametype": mod.modgametype,
                     "moddesc": mod.moddesc,
                     "rating": mod.rating,
                     "created_at": str(mod.created_at),
@@ -55,6 +56,7 @@ def get_popular_mods():
                             "modname": mod.modname,
                             "modurl": mod.modurl,
                             "modimage": mod.modimage,
+                            "modgametype": mod.modgametype,
                             "moddesc": mod.moddesc,
                             "rating": mod.rating,
                             "created_at": str(mod.created_at),
@@ -88,6 +90,7 @@ def get_newly_added_mods():
                             "modurl": mod.modurl,
                             "modimage": mod.modimage,
                             "moddesc": mod.moddesc,
+                            "modgametype": mod.modgametype,
                             "rating": mod.rating,
                             "created_at": str(mod.created_at),
                         })

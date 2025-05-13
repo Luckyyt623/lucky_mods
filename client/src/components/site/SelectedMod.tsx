@@ -8,7 +8,6 @@ interface Vals {
   modimage: string,
   moddesc: string,
   rating: number,
-  modtype: string,
   modgametype: string,
   created_at: string,
 }

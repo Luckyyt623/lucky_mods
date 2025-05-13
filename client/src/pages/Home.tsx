@@ -3,7 +3,7 @@ import Carousel from "@/components/site/Carousel"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Cards from "@/components/site/Cards"
 import { useEffect, useState } from "react"
-import SelectedMod from "./SelectedMod"
+import SelectedMod from "../components/site/SelectedMod"
 import { X } from 'lucide-react'
 import Loading from "@/components/site/Loading"
 

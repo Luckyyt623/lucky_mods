@@ -1,7 +1,7 @@
 import Layout from "@/Layout"
 import SlitherBG from "@/assets/slitherbg.jpg"
 import MinecraftBG from "@/assets/minecraftbg.jpg"
-import SelectedMod from "./SelectedMod"
+import SelectedMod from "../components/site/SelectedMod"
 import Loading from "@/components/site/Loading"
 import Cards from "@/components/site/Cards"
 import { X } from 'lucide-react'

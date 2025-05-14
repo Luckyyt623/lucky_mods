@@ -40,7 +40,7 @@ minecraft_mods = [
         "version": "1.0",
         "author": f"Miner {i}"
     }
-    for i in range(1, 1)
+    for i in range(1, 2)
 ]
 
 @app.route("/")

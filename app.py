@@ -36,11 +36,11 @@ minecraft_mods = [
         "name": f"Minecraft Mod {i}",
         "image": f"images/mods/mc_mod{i}.jpg",
         "details": f"Enhance Minecraft with Mod {i}.",
-        "download_link": f"https://www.mediafire.com/minecraft_mod{i}",
+        "download_link": f"https://www.mediafire.com/file/spcwtgp3r1du5p6/F8thful.zip/file/minecraft_mod{i}",
         "version": "1.0",
         "author": f"Miner {i}"
     }
-    for i in range(1, 4)
+    for i in range(1, 1)
 ]
 
 @app.route("/")

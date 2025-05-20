@@ -27,7 +27,7 @@ slither_mods = [
     {"id": 12, "name": "Slither Mod 12", "link": "https://www.mediafire.com/file/your_actual_link12", "image": "images/mods/mod12.jpg", "details": "Customize Slither.io with Mod 12.", "download_link": "https://www.mediafire.com/file/5ni30fe8vla6v15/2.75.apk/file", "version": "1.0", "author": "Modder 12"},
     {"id": 13, "name": "Slither Mod 13", "link": "https://www.mediafire.com/file/your_actual_link13", "image": "images/mods/mod13.jpg", "details": "Customize Slither.io with Mod 13.", "download_link": "https://www.mediafire.com/file/l0svn3e8a5a5k4d/slither.io_Mod_v7.1_base.apk/file/file/your_actual_link13", "version": "V7.1", "author": "Modder 13"},
     {"id": 14, "name": "Slither Mod 14", "link": "https://www.mediafire.com/file/your_actual_link14", "image": "images/mods/mod14.jpg", "details": "Customize Slither.io with Mod 14.", "download_link": "https://www.mediafire.com/file/9kc1xujji7t7d2e/ModV5%2528Right_controls%2529.apk/file/file/your_actual_link14", "version": "V6 right hand", "author": "Modder 14"},
-    {"id": 15, "name": "Slither Mod 15", "link": "https://www.mediafire.com/file/your_actual_link15", "image": "images/mods/mod15.jpg", "details": "Customize Slither.io with Mod 15.", "download_link": "https://www.mediafire.com/file/uayvbq42bzi3var/ModV5%2528Left_controls%2529.apk/file/file/your_actual_link15", "version": "V6 left hand", "author": "Modder 15"}
+    {"id": 15, "name": "Slither Mod 15", "link": "https://www.mediafire.com/file/your_actual_link15", "image": "images/mods/mod15.jpg", "details": "Customize Slither.io with Mod 15.", "download_link": "https://www.mediafire.com/file/7q1klj5ax134ucj/slither.io_2.75.apk/file/file/your_actual_link15", "version": "V2.75 ", "author": "Modder 15"}
 ]
 
 minecraft_mods = [

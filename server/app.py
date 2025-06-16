@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request , jsonify
 from dotenv import load_dotenv
 import os
 from database.connection import dbInstance 
@@ -15,6 +15,19 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
 }
 
 dbInstance.check_connection()
+
+@app.route('/')
+def home():
+    return "Hello from Lambda!"
+
+@app.route("/api/updatemod" , methods=["POST"])
+def updatemod():
+   
+   return Controller.UpdateMod(request)
+
+@app.route("/api/getmodid" , methods=["POST"])
+def getmodid():
+   return Controller.get_mod(request)
 
 @app.route("/api/getmods" , methods=["POST"])
 def get_mods():
@@ -36,9 +49,17 @@ def get_popularmods():
 @app.route("/api/get_new_mods" , methods=["GET"])
 def get_newmods():
    return Controller.get_newly_added_mods()
+@app.route("/api/login" , methods=["POST"])
+def login():
+
+   if "username" not in session:
+      return jsonify(logged=False) , 500
+   else:
+      pass
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     dbInstance.DbSession().remove()  # removes the current session for this request
+if __name__ == "__main__":
 
-app.run(port=os.getenv("PORT"), debug=True , host="0.0.0.0")
+   app.run()

@@ -19,6 +19,8 @@ export default function Dashboard() {
         created_at: string,
     }
 
+
+
     const [typegame, settypegame] = useState<string | null>("slither")
     const [Game_mods, setGameMods] = useState<Array<Mod_data>>([])
     const [isLoading, setisLoading] = useState<boolean>(false)
@@ -95,7 +97,7 @@ export default function Dashboard() {
                         {SelectedMod !== null ? (UpdateState ?
 
                             <div className="w-full h-full flex items-center justify-center">
-                                <UpdateMod SetSelectedMod={setSelectedMod} SelectedData={SelectedMod} setUpdateState={setUpdateState} />
+                                <UpdateMod setGameMods={setGameMods} SelectedData={SelectedMod} setUpdateState={setUpdateState} setSelectedMod={setSelectedMod}/>
 
                             </div>
                             :
@@ -110,7 +112,7 @@ export default function Dashboard() {
                                             <Trash size={20} />
                                         </button>
                                     </div>
-                                    <ModSelected vals={SelectedMod} />
+                                    <ModSelected  />
                                 </div>
                             </div>
 
